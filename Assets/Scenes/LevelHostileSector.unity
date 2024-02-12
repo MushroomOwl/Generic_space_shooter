@@ -631,7 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3c4df732999514299f6b2d7dfb6957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Time: 50
+  _Time: 55
   _TriggerEnd:
     m_PersistentCalls:
       m_Calls:
