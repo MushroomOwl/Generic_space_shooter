@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0211b6bc1ea35584e90776a2c4bf8e63, type: 3}
+  m_Name: AlliedFrigateBlaster
+  m_EditorClassIdentifier: 
+  _Mode: 0
+  _ProjectilePrefab: {fileID: 7820265984622073601, guid: f2a3b9d499257ae4690ba23967117c1b, type: 3}
+  _RateOfFire: 0.2
+  _EnergyUsage: 0
+  _AmmoUsage: 0
+  _SpreadDegrees: 0
+  _ProjectileCount: 1
+  _LaunchSFX: {fileID: 0}

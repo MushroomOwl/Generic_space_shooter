@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0211b6bc1ea35584e90776a2c4bf8e63, type: 3}
+  m_Name: AutoPrimary
+  m_EditorClassIdentifier: 
+  _Mode: 0
+  _ProjectilePrefab: {fileID: 3897536000455387690, guid: 8f6d2b70c4da47343b4f0846c87732d6, type: 3}
+  _RateOfFire: 0.2
+  _EnergyUsage: 2
+  _AmmoUsage: 0
+  _SpreadDegrees: 10
+  _ProjectileCount: 1
+  _LaunchSFX: {fileID: 0}
