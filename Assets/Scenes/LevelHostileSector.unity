@@ -1247,9 +1247,8 @@ MonoBehaviour:
   _TriggerExitEvent:
     m_PersistentCalls:
       m_Calls: []
-  _MessageText: 'Allied Ship: Captain of the Ranger Frigate DRIFTER-16 speaking.
-    Good job staying in one piece, pilot. Proceed to docking; we''re returning to
-    base.'
+  _MessageText: 'Allied Ship: Captain of the Frigate DRIFTER-16 speaking. Good job
+    staying in one piece, pilot. Proceed to docking; we''re returning to base.'
 --- !u!58 &1022678587
 CircleCollider2D:
   m_ObjectHideFlags: 0

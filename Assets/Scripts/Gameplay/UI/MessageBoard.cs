@@ -7,6 +7,7 @@ namespace Game
     {
         [SerializeField] private Text _Text;
         [SerializeField] private float _TextSpeed = 20.0f;
+        [SerializeField] private int _SymbolsPerTick = 3;
         [SerializeField] private RectTransform _TextField;
 
         private const string _TextTimerName = "textspeedtimer";
@@ -40,7 +41,9 @@ namespace Game
                 return;
             }
 
-            _textLengthToShow++;
+            _textLengthToShow += _SymbolsPerTick;
+            if (_textLengthToShow > _fulltext.Length) _textLengthToShow = _fulltext.Length;
+
             _Text.text = _fulltext.Substring(0, _textLengthToShow);
         }
 

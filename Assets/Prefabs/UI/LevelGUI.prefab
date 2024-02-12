@@ -3497,6 +3497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Text: {fileID: 4548093782826659012}
   _TextSpeed: 20
+  _SymbolsPerTick: 3
   _TextField: {fileID: 2732117086688431201}
 --- !u!1 &5233830010515362999
 GameObject:

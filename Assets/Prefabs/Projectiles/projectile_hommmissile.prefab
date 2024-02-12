@@ -5105,7 +5105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Projectile: {fileID: 8049599066451727998}
   _Target: {fileID: 0}
-  _RotationSpeed: 15
+  _RotationSpeed: 3
 --- !u!61 &7949544119354757187
 BoxCollider2D:
   m_ObjectHideFlags: 0

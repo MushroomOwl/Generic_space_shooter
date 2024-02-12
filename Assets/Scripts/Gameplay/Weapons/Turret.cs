@@ -9,6 +9,8 @@ namespace Game
 
         [SerializeField] private TurretProperties _TurretProperties;
 
+        public TurretProperties Loadout => _TurretProperties;
+
         private float _RefireTimer;
 
         public bool CanFire => _RefireTimer <= 0;

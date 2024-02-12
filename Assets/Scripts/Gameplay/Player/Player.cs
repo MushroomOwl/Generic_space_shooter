@@ -11,6 +11,8 @@ namespace Game
         private SpaceShip _ActiveShip;
         public static SpaceShip ActiveShip => _Instance._ActiveShip;
 
+        private List<TurretProperties> _CurrentLoadout;
+
         private FollowingCameraHandler _CameraHandler;
 
         [SerializeField] private Vector3 _SpawnPoint;
@@ -77,16 +79,31 @@ namespace Game
             _ActiveShip = Instantiate(_SelectedShip.Prefab, _SpawnPoint, Quaternion.identity).GetComponent<SpaceShip>();
             _ActiveShip.ApplyShipParameters(_SelectedShip);
 
+            if (_CurrentLoadout != null)
+            {
+                foreach (var turret in _CurrentLoadout)
+                {
+                    _ActiveShip.AssignWeapon(turret);
+                }
+            } 
+
             _ActiveShip.SetExplosionCallback(HandleShipDestruction);
 
             _ActiveShip.SetEnergyUpdateCallback(HUD.UpdateEnergyIndicator);
             _ActiveShip.SetHealthUpdateCallback(HUD.UpdateHealthIndicator);
             _ActiveShip.SetAmmoUpdateCallback(HUD.UpdateAmmoIndicator);
 
+            _ActiveShip.LoadoutChanged.AddListener(SaveLoadout);
+
             _ActiveShip.SetAsPlayerControlled();
 
             _CameraHandler.SetTarget(_ActiveShip.transform);
             InputHandler.SetTargetToControl(_ActiveShip);
+        }
+
+        private void SaveLoadout()
+        {
+            _CurrentLoadout = _ActiveShip.GetCurrentLoadout();
         }
 
         public static void AddKill()

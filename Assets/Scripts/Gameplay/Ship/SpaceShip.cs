@@ -39,6 +39,8 @@ namespace Game
         public UnityEvent EventOnEnergy => _EventOnEnergy;
         public UnityEvent EventOnAmmo => _EventOnAmmo;
 
+        private UnityEvent _LoadoutChanged = new UnityEvent();
+        public UnityEvent LoadoutChanged => _LoadoutChanged;
 
         private List<Bonus> _BonusList;
         public List<Bonus> BonusList => _BonusList;
@@ -176,6 +178,8 @@ namespace Game
                     _Turrets[i].AssignLoadout(weapon);
                 }
             }
+
+            LoadoutChanged?.Invoke();
         }
 
         public bool TryConsumeEnergy(float amt)
@@ -219,6 +223,18 @@ namespace Game
         public void RegenEnergy()
         {
             RestoreEnergy(_EnergyRegenPerSecond * Time.deltaTime);
+        }
+
+        public List<TurretProperties> GetCurrentLoadout()
+        {
+            List<TurretProperties> list = new List<TurretProperties>();
+
+            foreach(var turret in _Turrets)
+            {
+                list.Add(turret.Loadout);
+            }
+
+            return list;
         }
     }
 }

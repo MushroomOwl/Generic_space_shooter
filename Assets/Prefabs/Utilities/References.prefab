@@ -179,6 +179,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Player:
   - {fileID: 11400000, guid: 51d304b37f4e6654a88408e1423facd5, type: 2}
-  - {fileID: 11400000, guid: 1fb642115edf2964cae3eaf5dcf27bae, type: 2}
   - {fileID: 11400000, guid: 5192db23a81de0a4f98e6625df421c37, type: 2}
+  - {fileID: 11400000, guid: 1fb642115edf2964cae3eaf5dcf27bae, type: 2}
   _AI: []
