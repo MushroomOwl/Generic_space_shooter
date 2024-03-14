@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace Game
@@ -17,17 +18,17 @@ namespace Game
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_Back.rectTransform, eventData.position, eventData.pressEventCamera, out position);
 
-            position.x = 2 * position.x / _Back.rectTransform.sizeDelta.x - 1;
-            position.y = 2 * position.y / _Back.rectTransform.sizeDelta.y - 1;
+            // NOTE: Assuming that stick area is circle
+            float maxRadius = (_Back.rectTransform.sizeDelta.x - _Stick.rectTransform.sizeDelta.x) / 2;
 
-            Value = new Vector3(position.x, position.y, 0);
+            if (position.magnitude > maxRadius)
+            {
+                position = position.normalized * maxRadius;
+            }
 
-            if (Value.magnitude > 1) Value = Value.normalized;
+            Value = position.normalized;
 
-            float coefx = (_Back.rectTransform.sizeDelta.x - _Stick.rectTransform.sizeDelta.x) / 2;
-            float coefy = (_Back.rectTransform.sizeDelta.y - _Stick.rectTransform.sizeDelta.y) / 2;
-
-            _Stick.rectTransform.anchoredPosition = new Vector2(Value.x * coefx, Value.y * coefy); ;
+            _Stick.rectTransform.anchoredPosition = position;
         }
 
         public void OnPointerDown(PointerEventData eventData)

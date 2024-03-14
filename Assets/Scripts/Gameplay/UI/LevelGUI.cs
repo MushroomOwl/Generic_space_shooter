@@ -9,6 +9,8 @@ namespace Game
         [SerializeField] private LevelFailedMenu _LvlFailedM;
         [SerializeField] private PauseMenu _PauseM;
 
+        [SerializeField] private GameObject _MobileControls;
+
         [SerializeField] private Button _PauseButton;
         [SerializeField] private PointerClickHold _PrimaryFireButton;
         [SerializeField] private PointerClickHold _SecondaryFireButton;
@@ -18,12 +20,22 @@ namespace Game
 
         public static void ShowMessage(string text)
         {
-            _Instance._Message.ShowMessage(text);
+            _Instance._Message?.ShowMessage(text);
         }
 
         public static void HideMessage()
         {
-            _Instance._Message.HideMessage();
+            _Instance._Message?.HideMessage();
+        }
+
+        public static void EnableMobileControls()
+        {
+            _Instance._MobileControls.SetActive(true);
+        }
+
+        public static void DisableMobileControls()
+        {
+            _Instance._MobileControls.SetActive(false);
         }
 
         public static LevelFinishedMenu LvlFinishedM => _Instance._LvlFinishedM;

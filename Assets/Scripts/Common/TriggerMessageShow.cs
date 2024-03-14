@@ -7,10 +7,16 @@ namespace Game
         [TextArea]
         [SerializeField] private string _MessageText;
 
-        private void Awake()
+        private void OnEnable()
         {
             _TriggerEnterEvent.AddListener(() => LevelGUI.ShowMessage(_MessageText));
             _TriggerExitEvent.AddListener(() => LevelGUI.HideMessage());
+        }
+
+        public void OnDisable()
+        {
+            _TriggerEnterEvent.RemoveAllListeners();
+            _TriggerExitEvent.RemoveAllListeners();
         }
     }
 }

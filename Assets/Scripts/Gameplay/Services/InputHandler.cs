@@ -5,13 +5,7 @@ namespace Game
 {
     public class InputHandler : MonoSingleton<InputHandler>
     {
-        public enum ControlMode
-        {
-            Keyboard,
-            Mobile
-        }
-
-        [SerializeField] private ControlMode _ControlMode;
+        [SerializeField] private ControlScheme _controlScheme;
 
         private SpaceShip _TargetShip;
 
@@ -20,55 +14,44 @@ namespace Game
         private PointerClickHold _MobileFireSecondary;
         private Button _PauseButton;
 
-        private void Start()
+        private bool _controlsConfigured;
+
+        public void ConfigureControls()
         {
-            if (_MobileJoystick == null)
+            if (!LevelGUI.Initialized)
             {
                 return;
             }
 
-            if (_ControlMode == ControlMode.Keyboard)
+            _MobileJoystick = LevelGUI.VJoystick;
+            _MobileFirePrimary = LevelGUI.PrimaryFireButton;
+            _MobileFireSecondary = LevelGUI.SecondaryFireButton;
+            _PauseButton = LevelGUI.PauseButton;
+
+            if (_controlScheme.Mode == ControlMode.Keyboard)
             {
-                _MobileJoystick.gameObject.SetActive(false);
-
-                _MobileFirePrimary.gameObject.SetActive(false);
-                _MobileFireSecondary.gameObject.SetActive(false);
-
-                _PauseButton.gameObject.SetActive(false);
+                LevelGUI.DisableMobileControls();
             }
             else
             {
-                _MobileJoystick.gameObject.SetActive(true);
-
-                _MobileFirePrimary.gameObject.SetActive(true);
-                _MobileFireSecondary.gameObject.SetActive(true);
-
-                _PauseButton.gameObject.SetActive(true);
+                LevelGUI.EnableMobileControls();
+                _PauseButton.onClick.AddListener(GameManager.TogglePause);
             }
-        }
 
-        public void ConfigureControls()
-        {
-            if (LevelGUI.Initialized)
-            {
-                _MobileJoystick = LevelGUI.VJoystick;
-                _MobileFirePrimary = LevelGUI.PrimaryFireButton;
-                _MobileFireSecondary = LevelGUI.SecondaryFireButton;
-                _PauseButton = LevelGUI.PauseButton;
-            }
+            _controlsConfigured = true;
         }
 
         private void Update()
         {
             if (_TargetShip == null) return;
 
-            if (_ControlMode == ControlMode.Keyboard)
+            if (_controlScheme.Mode == ControlMode.Keyboard)
             {
                 ControlKeyboard();
                 return;
             }
 
-            if (_ControlMode == ControlMode.Mobile)
+            if (_controlScheme.Mode == ControlMode.Mobile)
             {
                 ControlMobile();
                 return;
@@ -77,6 +60,11 @@ namespace Game
 
         private void ControlKeyboard()
         {
+            if (!_controlsConfigured)
+            {
+                return;
+            }
+
             float thrust = 0;
             if (Input.GetKey(KeyCode.UpArrow)) thrust = 1;
             if (Input.GetKey(KeyCode.DownArrow)) thrust = -1;
@@ -106,10 +94,15 @@ namespace Game
 
         private void ControlMobile()
         {
+            if (!_controlsConfigured)
+            {
+                return;
+            }
+
             Vector3 direction = _MobileJoystick.Value;
 
-            var d1 = Vector2.Dot(direction, _TargetShip.transform.up);
-            var d2 = Vector2.Dot(direction, _TargetShip.transform.right);
+            var d1 = Vector2.Dot(direction, Vector2.up);
+            var d2 = Vector2.Dot(direction, Vector2.left);
 
             if (_MobileFirePrimary.IsHold)
             {
@@ -121,8 +114,8 @@ namespace Game
                 _TargetShip.Fire(TurretMode.Secondary);
             }
 
-            _TargetShip.ThrustControl = Mathf.Max(0, d1);
-            _TargetShip.TorqueControl = -d2;
+            _TargetShip.ThrustControl = d1;
+            _TargetShip.TorqueControl = d2;
         }
 
         public static void SetTargetToControl(SpaceShip target)

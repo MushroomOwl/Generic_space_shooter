@@ -44,9 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4e856078e315741816cd5214654188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TargetShip: {fileID: 0}
-  _ControlMode: 0
-  _MobileJoystick: {fileID: 0}
-  _MobileFirePrimary: {fileID: 0}
-  _MobileFireSecondary: {fileID: 0}
-  _PauseButton: {fileID: 0}
+  _controlScheme: {fileID: 11400000, guid: 7afca18a03236f547a2fa6bd0ff08907, type: 2}

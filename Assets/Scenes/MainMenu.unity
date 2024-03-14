@@ -1025,6 +1025,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ShipSelectPanelsAnchor: {fileID: 1337745175}
   _LevelSelectPanelsAnchor: {fileID: 39614602}
+  _controlsButton: {fileID: 2058438080}
+  _controlsScheme: {fileID: 11400000, guid: 7afca18a03236f547a2fa6bd0ff08907, type: 2}
   _ShipSelectPanelPrefab: {fileID: 8170440494980603496, guid: 6d67ae1b832c8314090f531fa9570a4b, type: 3}
   _LevelSelectPanelPrefab: {fileID: 2451581743306657902, guid: ce12426c17f322845a4a690f723e166e, type: 3}
 --- !u!4 &1133105119 stripped
@@ -7096,6 +7098,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4992329992108101230, guid: 59ea3cf7352a3b641ab3f27e0a1c26f2, type: 3}
   m_PrefabInstance: {fileID: 1853046706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2058438080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 622617387249731675, guid: 82a77adde367565439c93fc1382e2290, type: 3}
+  m_PrefabInstance: {fileID: 208518114}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2070169124
 GameObject:

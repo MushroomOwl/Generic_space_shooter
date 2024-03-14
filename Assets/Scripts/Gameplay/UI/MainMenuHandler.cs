@@ -7,6 +7,10 @@ namespace Game
     {
         [SerializeField] private GameObject _ShipSelectPanelsAnchor;
         [SerializeField] private GameObject _LevelSelectPanelsAnchor;
+        [SerializeField] private GameObject _controlsButton;
+
+        [SerializeField] private ControlScheme _controlsScheme;
+
 
         [SerializeField] private ShipSelectPanel _ShipSelectPanelPrefab;
         [SerializeField] private LevelSelectPanel _LevelSelectPanelPrefab;
@@ -22,6 +26,8 @@ namespace Game
             {
                 Instantiate(_LevelSelectPanelPrefab, _LevelSelectPanelsAnchor.transform).Init(props);
             }
+
+            _controlsButton.SetActive(_controlsScheme.Mode != ControlMode.Mobile);
         }
 
         public void ExitGame()
